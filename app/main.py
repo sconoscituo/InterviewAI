@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import init_db
-from app.routers import users, sessions, answers, payments
+from app.routers import users, sessions, answers, payments, voice_interview
 from app.middleware.security_headers import SecurityHeadersMiddleware
 
 app = FastAPI(
@@ -23,6 +23,7 @@ app.include_router(users.router)
 app.include_router(sessions.router)
 app.include_router(answers.router)
 app.include_router(payments.router)
+app.include_router(voice_interview.router)
 
 
 @app.on_event("startup")
