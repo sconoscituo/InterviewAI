@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import init_db
 from app.routers import users, sessions, answers, payments
+from app.middleware.security_headers import SecurityHeadersMiddleware
 
 app = FastAPI(
     title="InterviewAI API",
@@ -9,6 +10,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
+app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
